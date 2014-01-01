@@ -1,5 +1,7 @@
 package net.drouchy.ninetynine
 
+import java.util.NoSuchElementException
+
 object ListUtils {
 
   def last[A](list: List[A]): A = {
@@ -22,6 +24,18 @@ object ListUtils {
     list match {
       case head :: _ :: Nil => head
       case head :: rest     => penultimateRecursive(rest)
+    }
+  }
+
+  def nth[A](index:Int, list: List[A]): A = {
+    list(index)
+  }
+
+  def nthRecursive[A](index:Int, list: List[A]): A = {
+    (index, list) match {
+      case ( 0,     head :: _    ) => head
+      case ( index, head :: rest ) => nthRecursive(index-1, rest)
+      case ( _,     Nil          ) => throw new NoSuchElementException
     }
   }
 }
