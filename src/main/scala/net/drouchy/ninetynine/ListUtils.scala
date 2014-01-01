@@ -38,4 +38,15 @@ object ListUtils {
       case ( _,     Nil          ) => throw new NoSuchElementException
     }
   }
+
+  def length[A](list: List[A]): Long = {
+    list.length
+  }
+
+  def lengthRecursive[A](list: List[A]): Long = {
+    list match {
+      case Nil       => 0
+      case _ :: tail => 1 + lengthRecursive(tail)
+    }
+  }
 }
