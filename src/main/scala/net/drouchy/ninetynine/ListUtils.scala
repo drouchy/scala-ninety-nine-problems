@@ -49,4 +49,15 @@ object ListUtils {
       case _ :: tail => 1 + lengthRecursive(tail)
     }
   }
+
+  def reverse[A](list: List[A]): List[A] = {
+    list.reverse
+  }
+
+  def reverseRecursive[A](list: List[A]): List[A] = {
+    list match {
+      case head :: tail :: Nil => List(tail, head)
+      case head :: rest        => reverseRecursive(rest) ::: List(head)
+    }
+  }
 }
