@@ -64,4 +64,20 @@ object ListUtils {
   def isPalindrome[A](list: List[A]): Boolean = {
     list.reverse.equals(list)
   }
+
+  def flatten(list: List[Any]): List[Any] = {
+    list.flatMap {
+      case nestedList: List[Any] => flatten(nestedList)
+      case e                     => List(e)
+    }
+  }
+
+  def flattenRecursive(list: List[Any]): List[Any] = {
+    list match {
+      case (head: List[Any]) :: tail => flatten(head) ::: flatten(tail)
+      case head              :: Nil  => List(head)
+      case head              :: tail => List(head) ::: flatten(tail)
+      case Nil                       => List()
+    }
+  }
 }
