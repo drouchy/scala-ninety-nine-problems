@@ -60,4 +60,8 @@ object ListUtils {
       case head :: rest        => reverseRecursive(rest) ::: List(head)
     }
   }
+
+  def isPalindrome[A](list: List[A]): Boolean = {
+    list.reverse.equals(list)
+  }
 }
